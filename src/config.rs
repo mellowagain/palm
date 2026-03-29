@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use std::fs;
+use tokio::fs;
 use anyhow::{Context, Result};
 use serde::Deserialize;
 
@@ -13,8 +13,8 @@ pub(crate) struct Item {
     pub(crate) account_id: i32,
 }
 
-pub(crate) fn load_config() -> Result<HashMap<String, Vec<Item>>> {
-    let content = fs::read_to_string("./config.json").context("failed to read config file")?;
+pub(crate) async fn load_config() -> Result<HashMap<String, Vec<Item>>> {
+    let content = fs::read_to_string("./config.json").await.context("failed to read config file")?;
     let map = serde_json::from_str(&content).context("failed to deserialize config file json")?;
 
     Ok(map)
