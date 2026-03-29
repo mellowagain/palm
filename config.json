@@ -1,0 +1,38 @@
+{
+  "purchases": [
+    {
+      "icon": "☕\uFE0F",
+      "name": "Latte Macchiato",
+      "category_id": 2224727,
+      "currency": "chf",
+      "amount": 2.2,
+      "account_id": 267117
+    },
+    {
+      "icon": "\uD83E\uDD6A",
+      "name": "11 CHF Lunch",
+      "category_id": 2224726,
+      "currency": "chf",
+      "amount": 11,
+      "account_id": 267117
+    }
+  ],
+  "top-ups": [
+    {
+      "icon": "\uD83D\uDCB5",
+      "name": "10 CHF",
+      "category_id": 2225017,
+      "currency": "chf",
+      "amount": -10,
+      "account_id": 267117
+    },
+    {
+      "icon": "\uD83D\uDCB7",
+      "name": "20 CHF",
+      "category_id": 2225017,
+      "currency": "chf",
+      "amount": -20,
+      "account_id": 267117
+    }
+  ]
+}
