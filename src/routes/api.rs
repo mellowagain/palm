@@ -9,7 +9,7 @@ use poem::error::BadRequest;
 use poem::http::StatusCode;
 use reqwest::Client;
 use serde_json::json;
-use time::format_description::well_known::Rfc3339;
+use time::macros::format_description;
 use time::OffsetDateTime;
 use uuid::Uuid;
 use crate::config::{find_by_id, Item};
@@ -28,8 +28,8 @@ pub(crate) async fn create_transaction(
         Some(item) => item
     };
 
-    let now = OffsetDateTime::now_utc().format(&Rfc3339)
-        .context("failed to serialize now into rfc 3339")?;
+    let now = OffsetDateTime::now_utc().format(format_description!("[year]-[month]-[day]"))
+        .context("failed to format date")?;
 
     let body = json!({
         "date": now,
