@@ -1,40 +1,17 @@
 use base64::{engine::general_purpose::STANDARD, Engine};
-use poem::{Endpoint, IntoResponse, Middleware, Request, Response, Result};
+use poem::{Endpoint, IntoResponse, Request, Response};
 use poem::http::StatusCode;
 
-pub(crate) struct BasicAuth {
-    username: String,
-    password: String,
+pub(crate) struct BasicAuth<E> {
+    pub(crate) inner: E,
+    pub(crate) username: String,
+    pub(crate) password: String,
 }
 
-impl BasicAuth {
-    pub(crate) fn new(username: String, password: String) -> Self {
-        Self { username, password }
-    }
-}
-
-impl<E: Endpoint> Middleware<E> for BasicAuth {
-    type Output = BasicAuthEndpoint<E>;
-
-    fn transform(&self, ep: E) -> Self::Output {
-        BasicAuthEndpoint {
-            inner: ep,
-            username: self.username.clone(),
-            password: self.password.clone(),
-        }
-    }
-}
-
-pub(crate) struct BasicAuthEndpoint<E> {
-    inner: E,
-    username: String,
-    password: String,
-}
-
-impl<E: Endpoint> Endpoint for BasicAuthEndpoint<E> {
+impl<E: Endpoint> Endpoint for BasicAuth<E> {
     type Output = Response;
 
-    async fn call(&self, req: Request) -> Result<Self::Output> {
+    async fn call(&self, req: Request) -> poem::Result<Response> {
         let authorized = req.headers()
             .get("Authorization")
             .and_then(|v| v.to_str().ok())
