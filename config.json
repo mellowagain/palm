@@ -5,7 +5,8 @@
       "name": "Latte Macchiato",
       "category_id": 2224727,
       "currency": "chf",
-      "amount": 2.2,
+      "amount": "2.2",
+      "payee": "Coffee Machine AXA",
       "account_id": 267117
     },
     {
@@ -13,7 +14,8 @@
       "name": "11 CHF Lunch",
       "category_id": 2224726,
       "currency": "chf",
-      "amount": 11,
+      "amount": "11",
+      "payee": "Cafeteria AXA",
       "account_id": 267117
     }
   ],
@@ -23,7 +25,8 @@
       "name": "10 CHF",
       "category_id": 2225017,
       "currency": "chf",
-      "amount": -10,
+      "amount": "-10",
+      "payee": "Yuh",
       "account_id": 267117
     },
     {
@@ -31,7 +34,8 @@
       "name": "20 CHF",
       "category_id": 2225017,
       "currency": "chf",
-      "amount": -20,
+      "amount": "-20",
+      "payee": "Yuh",
       "account_id": 267117
     }
   ]

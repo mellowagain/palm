@@ -1,5 +1,16 @@
-use poem::Route;
+mod api;
+mod frontend;
 
-pub(crate) fn all_routes() -> Route {
+use std::collections::HashMap;
+use std::sync::Arc;
+use poem::{EndpointExt, Route};
+use crate::config::Item;
+use crate::routes::api::create_transaction;
+use crate::routes::frontend::index;
+
+pub(crate) fn all_routes(config: Arc<HashMap<String, Vec<Item>>>) -> impl poem::Endpoint {
     Route::new()
+        .at("/", index)
+        .at("/api/create/:id", create_transaction)
+        .data(config)
 }
